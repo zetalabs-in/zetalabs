@@ -44,10 +44,22 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Tranch Clone Custom Colors */
+  --color-brand-purple: #7C3AED;
+  --color-brand-blue: #3B82F6;
+  --color-brand-green: #10B981;
+  --color-brand-dark: #4D4F4F;
+
+  /* Neubrutalist Shadows */
+  --shadow-neubrutalist: 4px 4px 0px 0px #000;
+  --shadow-neubrutalist-purple: 4px 4px 0px 0px #7C3AED;
+  --shadow-neubrutalist-blue: 4px 4px 0px 0px #3B82F6;
+  --shadow-neubrutalist-green: 4px 4px 0px 0px #10B981;
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 1rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -119,6 +131,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
