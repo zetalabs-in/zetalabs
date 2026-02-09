@@ -27,35 +27,13 @@ export function Navbar() {
                     >
                         Product
                     </Link>
-                    <Link
-                        href="#"
-                        className="text-sm font-medium text-brand-dark hover:text-black hover:underline hover:underline-offset-4"
-                    >
-                        Solutions
-                    </Link>
-                    <Link
-                        href="#"
-                        className="text-sm font-medium text-brand-dark hover:text-black hover:underline hover:underline-offset-4"
-                    >
-                        Resources
-                    </Link>
-                    <Link
-                        href="#"
-                        className="text-sm font-medium text-brand-dark hover:text-black hover:underline hover:underline-offset-4"
-                    >
-                        Company
-                    </Link>
                 </div>
 
                 {/* Desktop Actions */}
                 <div className="hidden items-center gap-4 md:flex">
-                    <Link
-                        href="#"
-                        className="text-sm font-bold text-black hover:underline hover:underline-offset-4"
-                    >
-                        Login
-                    </Link>
-                    <Button variant="neubrutalist">Contact Sales</Button>
+                    <Button variant="neubrutalist" asChild>
+                        <Link href="mailto:hello@zetalabs.dev">Contact Sales</Link>
+                    </Button>
                 </div>
 
                 {/* Mobile Menu Toggle */}
@@ -73,46 +51,12 @@ export function Navbar() {
                 <div className="border-b-2 border-black bg-white px-4 py-8 md:hidden">
                     <div className="flex flex-col gap-6">
                         <Link
-                            href="#"
+                            href="/products"
                             className="text-lg font-medium text-brand-dark"
                             onClick={() => setIsOpen(false)}
                         >
                             Product
                         </Link>
-                        <Link
-                            href="#"
-                            className="text-lg font-medium text-brand-dark"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Solutions
-                        </Link>
-                        <Link
-                            href="#"
-                            className="text-lg font-medium text-brand-dark"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Resources
-                        </Link>
-                        <Link
-                            href="#"
-                            className="text-lg font-medium text-brand-dark"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Company
-                        </Link>
-                        <hr className="border-black/10" />
-                        <div className="flex flex-col gap-4">
-                            <Link
-                                href="#"
-                                className="text-lg font-bold text-black"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Login
-                            </Link>
-                            <Button variant="neubrutalist" className="w-full">
-                                Contact Sales
-                            </Button>
-                        </div>
                     </div>
                 </div>
             )}

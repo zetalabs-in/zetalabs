@@ -12,6 +12,46 @@ export interface GitHubRepo {
     fork: boolean;
 }
 
+export interface GitHubCommit {
+    message: string;
+    sha: string;
+    date: string;
+}
+
+export async function getLatestCommit(full_name: string, branch: string = 'main'): Promise<GitHubCommit | null> {
+    try {
+        // Try main first, then master if failed (common pattern, though we could check default_branch)
+        let res = await fetch(`https://api.github.com/repos/${full_name}/commits/${branch}`, { next: { revalidate: 60 } });
+
+        if (!res.ok) {
+            res = await fetch(`https://api.github.com/repos/${full_name}/commits/master`, { next: { revalidate: 60 } });
+        }
+
+        if (!res.ok) return null;
+
+        const data = await res.json();
+        return {
+            message: data.commit.message,
+            sha: data.sha,
+            date: data.commit.author.date
+        };
+    } catch (e) {
+        console.error(`Error fetching commit for ${full_name}:`, e);
+        return null;
+    }
+}
+
+export async function getRepoLanguages(full_name: string): Promise<Record<string, number>> {
+    try {
+        const res = await fetch(`https://api.github.com/repos/${full_name}/languages`, { next: { revalidate: 3600 } });
+        if (!res.ok) return {};
+        return await res.json();
+    } catch (error) {
+        console.error(`Error fetching languages for ${full_name}:`, error);
+        return {};
+    }
+}
+
 async function fetchReadme(full_name: string, default_branch: string = 'main'): Promise<string | null> {
     try {
         const urls = [

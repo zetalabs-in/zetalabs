@@ -5,8 +5,8 @@ export function Footer() {
     return (
         <footer className="border-t-2 border-black bg-white">
             <div className="container mx-auto px-4 py-16 md:px-6">
-                <div className="grid gap-12 md:grid-cols-4">
-                    <div className="space-y-4">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+                    <div className="space-y-4 max-w-sm">
                         <div className="flex items-center gap-2">
                             <div className="h-8 w-8 rounded-lg border-2 border-black bg-brand-purple shadow-neubrutalist-sm" />
                             <span className="text-2xl font-black tracking-tighter text-black">
@@ -27,35 +27,6 @@ export function Footer() {
                                 <Instagram className="h-5 w-5" />
                             </Link>
                         </div>
-                    </div>
-
-                    <div>
-                        <h4 className="mb-6 text-lg font-bold text-black">Product</h4>
-                        <ul className="space-y-4 text-brand-dark">
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">Features</Link></li>
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">Pricing</Link></li>
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">Security</Link></li>
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">API</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="mb-6 text-lg font-bold text-black">Company</h4>
-                        <ul className="space-y-4 text-brand-dark">
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">About Us</Link></li>
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">Careers</Link></li>
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">Blog</Link></li>
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">Contact</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="mb-6 text-lg font-bold text-black">Legal</h4>
-                        <ul className="space-y-4 text-brand-dark">
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">Privacy Policy</Link></li>
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">Terms of Service</Link></li>
-                            <li><Link href="#" className="font-medium hover:text-black hover:underline">Cookie Policy</Link></li>
-                        </ul>
                     </div>
                 </div>
 

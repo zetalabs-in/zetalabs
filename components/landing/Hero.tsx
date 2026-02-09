@@ -1,14 +1,30 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import * as motion from "framer-motion/client";
 
-export function Hero() {
+interface HeroProps {
+    latestRepo?: {
+        name: string;
+        description: string | null;
+        language: string | null;
+    } | null;
+    latestCommit?: {
+        message: string;
+        sha: string;
+    } | null;
+    languages?: Record<string, number>;
+}
+
+export function Hero({ latestRepo, latestCommit, languages }: HeroProps) {
+    const topLanguages = languages ? Object.keys(languages).slice(0, 4) : [];
+
     return (
         <section className="relative overflow-hidden bg-white px-4 py-20 md:px-6 md:py-32">
             <div className="container mx-auto grid gap-12 lg:grid-cols-2 lg:items-center">
-                {/* Left Column: Content */}
+                {/* Left Column: Content (Unchanged) */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -35,23 +51,11 @@ export function Hero() {
                     </p>
 
                     <div className="flex flex-col gap-4 sm:flex-row">
-                        <Button variant="primary" size="lg" className="gap-2">
-                            Start Now <ArrowRight className="h-5 w-5" />
+                        <Button variant="neubrutalist" size="lg" asChild>
+                            <Link href="mailto:hello@zetalabs.dev">
+                                Contact Sales <ArrowRight className="ml-2 h-5 w-5" />
+                            </Link>
                         </Button>
-                        <Button variant="outline" size="lg">
-                            Book a Demo
-                        </Button>
-                    </div>
-
-                    <div className="mt-4 flex flex-col gap-2 text-sm font-medium text-gray-500 sm:flex-row sm:items-center sm:gap-6">
-                        <div className="flex items-center gap-2">
-                            <CheckCircle2 className="h-4 w-4 text-brand-green" />
-                            <span>No credit card required</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <CheckCircle2 className="h-4 w-4 text-brand-green" />
-                            <span>Instant approval</span>
-                        </div>
                     </div>
                 </motion.div>
 
@@ -79,7 +83,7 @@ export function Hero() {
                             <div className="flex items-start justify-between">
                                 <div className="space-y-1">
                                     <p className="text-sm font-bold text-gray-500">Active Project</p>
-                                    <h3 className="text-2xl font-black text-black">E-Commerce App</h3>
+                                    <h3 className="text-2xl font-black text-black">{latestRepo?.name || "Loading..."}</h3>
                                 </div>
                                 <div className="flex items-center gap-2 rounded-full border-2 border-black bg-green-100 px-3 py-1">
                                     <div className="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
@@ -87,30 +91,34 @@ export function Hero() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="rounded-xl border-2 border-black bg-purple-50 p-4">
-                                    <p className="text-xs font-bold text-purple-600">Total Users</p>
-                                    <p className="text-2xl font-black text-black">124.5k</p>
-                                    <div className="mt-2 h-1 w-full rounded-full bg-purple-200">
-                                        <div className="h-1 w-[70%] rounded-full bg-purple-600"></div>
-                                    </div>
+                            <div className="bg-gray-50 rounded-xl border-2 border-black p-4">
+                                <div className="mb-3 flex items-center justify-between">
+                                    <span className="text-sm font-bold text-black">Tech Stack</span>
+                                    <span className="text-xs font-bold text-gray-500">Auto-Detected</span>
                                 </div>
-                                <div className="rounded-xl border-2 border-black bg-blue-50 p-4">
-                                    <p className="text-xs font-bold text-blue-600">Uptime</p>
-                                    <p className="text-2xl font-black text-black">99.9%</p>
-                                    <div className="mt-2 h-1 w-full rounded-full bg-blue-200">
-                                        <div className="h-1 w-[95%] rounded-full bg-blue-600"></div>
-                                    </div>
+                                <div className="flex flex-wrap gap-2">
+                                    {topLanguages.length > 0 ? (
+                                        topLanguages.map((lang) => (
+                                            <span key={lang} className="rounded-lg border-2 border-black bg-white px-3 py-1 text-xs font-bold text-brand-dark shadow-sm">
+                                                {lang}
+                                            </span>
+                                        ))
+                                    ) : (
+                                        <span className="text-sm text-gray-500 italic">No languages detected</span>
+                                    )}
                                 </div>
                             </div>
 
-                            <div className="rounded-xl border-2 border-black bg-gray-50 p-4">
-                                <div className="mb-2 flex items-center justify-between">
-                                    <span className="text-sm font-bold text-black">Sprint Progress</span>
-                                    <span className="text-xs font-bold text-gray-500">82%</span>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="rounded-xl border-2 border-black bg-yellow-50 p-4">
+                                    <p className="text-xs font-bold text-yellow-700">Major Language</p>
+                                    <p className="text-lg font-black text-black truncate">
+                                        {latestRepo?.language || "N/A"}
+                                    </p>
                                 </div>
-                                <div className="flex h-4 w-full overflow-hidden rounded-full border-2 border-black bg-white">
-                                    <div className="h-full w-[82%] bg-brand-purple"></div>
+                                <div className="rounded-xl border-2 border-black bg-blue-50 p-4">
+                                    <p className="text-xs font-bold text-blue-600">Health</p>
+                                    <p className="text-lg font-black text-black">Excellent</p>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +151,7 @@ export function Hero() {
                                 </div>
                                 <div>
                                     <p className="text-xs font-bold text-gray-500">New Commit</p>
-                                    <p className="text-sm font-black">feat: added auth</p>
+                                    <p className="text-sm font-black truncate max-w-[150px]">{latestCommit?.message || "feat: initial commit"}</p>
                                 </div>
                             </div>
                         </motion.div>
