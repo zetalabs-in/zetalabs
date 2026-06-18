@@ -80,7 +80,7 @@ export function Hero() {
               asChild
               className="bg-terminal-green text-black font-bold hover:bg-white hover:text-black py-6 px-8 rounded-lg shadow-[0_0_15px_rgba(0,255,102,0.2)] hover:shadow-[0_0_25px_rgba(0,255,102,0.4)] transition-all cursor-pointer text-sm"
             >
-              <a href="mailto:hello@zetalabs.dev?subject=Requesting Security Audit Assessment">
+              <a href="mailto:Openpages@proton.me?subject=Requesting Security Audit Assessment">
                 &gt; Request Audit Quote <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>

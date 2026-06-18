@@ -64,7 +64,7 @@ export function Footer() {
                             <ul className="space-y-2 text-sm text-gray-500">
                                 <li><Link href={getLinkHref("/about")} className="hover:text-terminal-teal hover:underline">&gt; about_me</Link></li>
                                 <li><Link href={isBlogOnlyDomain ? "/" : "/blog"} className="hover:text-terminal-teal hover:underline">&gt; hacking_blog</Link></li>
-                                <li><a href="mailto:hello@zetalabs.dev" className="hover:text-terminal-teal hover:underline">&gt; contact_sales</a></li>
+                                <li><a href="mailto:Openpages@proton.me" className="hover:text-terminal-teal hover:underline">&gt; contact_sales</a></li>
                             </ul>
                         </div>
                     </div>

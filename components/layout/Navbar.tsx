@@ -97,7 +97,7 @@ export function Navbar() {
                         asChild
                         className="bg-transparent border border-terminal-green text-terminal-green font-mono font-bold hover:bg-terminal-green hover:text-black hover:shadow-cyber-glow-green transition-all duration-300 rounded-lg cursor-pointer"
                     >
-                        <a href="mailto:hello@zetalabs.dev">&gt; Request Audit</a>
+                        <a href="mailto:Openpages@proton.me">&gt; Request Audit</a>
                     </Button>
                 </div>
 
@@ -156,7 +156,7 @@ export function Navbar() {
                             asChild
                             className="bg-transparent border border-terminal-green text-terminal-green hover:bg-terminal-green hover:text-black font-bold w-full rounded-lg"
                         >
-                            <a href="mailto:hello@zetalabs.dev" onClick={() => setIsOpen(false)}>
+                            <a href="mailto:Openpages@proton.me" onClick={() => setIsOpen(false)}>
                                 &gt; Request Audit
                             </a>
                         </Button>

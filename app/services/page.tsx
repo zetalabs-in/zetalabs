@@ -139,7 +139,7 @@ export default function ServicesPage() {
 
                   <div className="pt-2">
                     <a
-                      href={`mailto:hello@zetalabs.dev?subject=Inquiry: ${service.title}`}
+                      href={`mailto:Openpages@proton.me?subject=Inquiry: ${service.title}`}
                       className="inline-flex items-center gap-1.5 text-xs text-terminal-teal hover:underline hover:text-white transition-colors cursor-pointer"
                     >
                       &gt; Request scope assessment <ArrowRight className="h-3.5 w-3.5" />
@@ -158,7 +158,7 @@ export default function ServicesPage() {
               Connect with our security engineering team directly to scope your network parameters, codebase sizes, and schedule an assessment.
             </p>
             <a
-              href="mailto:hello@zetalabs.dev?subject=Requesting Security Audit Assessment"
+              href="mailto:Openpages@proton.me?subject=Requesting Security Audit Assessment"
               className="inline-flex items-center gap-2 rounded bg-terminal-green hover:bg-white text-black font-bold py-3 px-6 transition-colors text-xs cursor-pointer relative z-10 shadow-[0_0_10px_rgba(0,255,102,0.2)]"
             >
               &gt; Contact Security Team <ArrowRight className="h-4 w-4" />
