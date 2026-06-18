@@ -10,7 +10,7 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const from = searchParams.get("from") || "/admin";
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -40,14 +40,14 @@ function LoginForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!username || !password) {
+    if (!email || !password) {
       setError("Credentials required.");
       return;
     }
 
     setLoading(true);
     setError("");
-    setLogs((prev) => [...prev, `auth: authenticating user '${username}'...`]);
+    setLogs((prev) => [...prev, `auth: authenticating user '${email}'...`]);
 
     try {
       const res = await fetch("/api/auth/login", {
@@ -55,7 +55,7 @@ function LoginForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
@@ -110,23 +110,23 @@ function LoginForm() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Username */}
+          {/* Email */}
           <div className="space-y-1.5">
-            <label htmlFor="username" className="text-xs text-gray-400 font-bold uppercase tracking-wider block">
-              Username
+            <label htmlFor="email" className="text-xs text-gray-400 font-bold uppercase tracking-wider block">
+              Email Address
             </label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
                 <User className="h-4 w-4" />
               </span>
               <input
-                id="username"
-                type="text"
+                id="email"
+                type="email"
                 required
                 disabled={loading}
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="admin"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@zetalabs.in"
                 className="w-full bg-[#030303] border border-cyber-border hover:border-cyber-border/80 focus:border-terminal-green focus:ring-1 focus:ring-terminal-green text-gray-200 placeholder-gray-600 rounded-lg py-2.5 pl-10 pr-4 text-sm font-mono transition-all outline-none"
               />
             </div>

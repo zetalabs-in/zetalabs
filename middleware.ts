@@ -43,14 +43,25 @@ export async function middleware(request: NextRequest) {
 
   // 2. Authentication Protection for /admin
   if (pathname.startsWith("/admin")) {
-    const sessionCookie = request.cookies.get("zetalabs_session")?.value;
-    const jwtSecret = process.env.JWT_SECRET || "supersecretcyberpunkkeythatnobodycaneverguessever";
+    const sessionCookie = request.cookies.get("sb_access_token")?.value;
 
     let isValid = false;
     if (sessionCookie) {
-      const payload = await verifyJWT(sessionCookie, jwtSecret);
-      if (payload && payload.username) {
-        isValid = true;
+      try {
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://wjsgcmjgujkmedymjjxi.supabase.co";
+        const { createClient } = await import("@supabase/supabase-js");
+        const client = createClient(supabaseUrl, sessionCookie, {
+          auth: {
+            persistSession: false,
+            autoRefreshToken: false,
+          },
+        });
+        const { data: { user }, error } = await client.auth.getUser();
+        if (!error && user) {
+          isValid = true;
+        }
+      } catch (err) {
+        console.error("Middleware Supabase auth error:", err);
       }
     }
 

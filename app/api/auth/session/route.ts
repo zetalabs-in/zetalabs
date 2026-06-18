@@ -1,17 +1,26 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { verifyJWT } from "@/lib/jwt";
+import { createClient } from "@supabase/supabase-js";
 
 export async function GET() {
   try {
     const cookieStore = await cookies();
-    const token = cookieStore.get("zetalabs_session")?.value;
-    const jwtSecret = process.env.JWT_SECRET || "supersecretcyberpunkkeythatnobodycaneverguessever";
+    const token = cookieStore.get("sb_access_token")?.value;
 
     if (token) {
-      const payload = await verifyJWT(token, jwtSecret);
-      if (payload && payload.username) {
-        return NextResponse.json({ authenticated: true, username: payload.username });
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://wjsgcmjgujkmedymjjxi.supabase.co";
+      // Create a temporary Supabase client with the user's specific JWT token
+      const client = createClient(supabaseUrl, token, {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false,
+        },
+      });
+      
+      const { data: { user }, error } = await client.auth.getUser();
+
+      if (!error && user) {
+        return NextResponse.json({ authenticated: true, email: user.email });
       }
     }
 
