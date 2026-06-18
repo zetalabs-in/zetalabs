@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { db } from "@/lib/db";
+import { supabase } from "@/lib/supabase";
 import { verifyJWT } from "@/lib/jwt";
 
 async function isAuthenticated() {
@@ -19,10 +19,14 @@ export async function GET(
 ) {
   try {
     const { slug } = await params;
-    const stmt = db.prepare("SELECT * FROM posts WHERE slug = ?");
-    const row = stmt.get(slug) as any;
+    
+    const { data: row, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("slug", slug)
+      .maybeSingle();
 
-    if (!row) {
+    if (error || !row) {
       return NextResponse.json({ success: false, error: "Post not found" }, { status: 404 });
     }
 
@@ -38,7 +42,7 @@ export async function GET(
       summary: row.summary,
       content: row.content,
       date: row.date,
-      tags: row.tags ? JSON.parse(row.tags) : [],
+      tags: Array.isArray(row.tags) ? row.tags : (row.tags ? JSON.parse(row.tags) : []),
       published: Boolean(row.published),
     };
 
@@ -60,11 +64,15 @@ export async function DELETE(
     }
 
     const { slug } = await params;
-    const stmt = db.prepare("DELETE FROM posts WHERE slug = ?");
-    const result = stmt.run(slug);
 
-    if (result.changes === 0) {
-      return NextResponse.json({ success: false, error: "Post not found" }, { status: 404 });
+    const { error } = await supabase
+      .from("posts")
+      .delete()
+      .eq("slug", slug);
+
+    if (error) {
+      console.error("DELETE post error:", error);
+      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });

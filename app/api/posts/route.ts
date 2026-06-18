@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { db } from "@/lib/db";
+import { supabase } from "@/lib/supabase";
 import { verifyJWT } from "@/lib/jwt";
 
 async function isAuthenticated() {
@@ -17,23 +17,27 @@ export async function GET() {
   try {
     const auth = await isAuthenticated();
     
-    let rows;
-    if (auth) {
-      const stmt = db.prepare("SELECT * FROM posts ORDER BY date DESC");
-      rows = stmt.all() as any[];
-    } else {
-      const stmt = db.prepare("SELECT * FROM posts WHERE published = 1 ORDER BY date DESC");
-      rows = stmt.all() as any[];
+    let query = supabase.from("posts").select("*").order("date", { ascending: false });
+    
+    if (!auth) {
+      query = query.eq("published", true);
     }
 
-    const posts = rows.map((row) => ({
+    const { data: rows, error } = await query;
+
+    if (error) {
+      console.error("Supabase GET error:", error);
+      return NextResponse.json({ success: false, posts: [] });
+    }
+
+    const posts = (rows || []).map((row) => ({
       id: row.id,
       title: row.title,
       slug: row.slug,
       summary: row.summary,
       content: row.content,
       date: row.date,
-      tags: row.tags ? JSON.parse(row.tags) : [],
+      tags: Array.isArray(row.tags) ? row.tags : (row.tags ? JSON.parse(row.tags) : []),
       published: Boolean(row.published),
     }));
 
@@ -66,28 +70,26 @@ export async function POST(request: NextRequest) {
     if (!date) {
       date = new Date().toISOString().split("T")[0];
     }
-    const tagsStr = JSON.stringify(tags || []);
-    const publishedVal = published ? 1 : 0;
+    const publishedVal = Boolean(published);
 
-    // Check if ID or Slug already exists to determine update vs insert
-    const checkStmt = db.prepare("SELECT id FROM posts WHERE id = ? OR slug = ?");
-    const existing = checkStmt.get(id, slug) as { id: string } | undefined;
+    // Perform upsert (Insert or Update if ID or Slug already exists)
+    const { error } = await supabase.from("posts").upsert({
+      id,
+      title,
+      slug,
+      summary,
+      content,
+      date,
+      tags: tags || [],
+      published: publishedVal
+    });
 
-    if (existing) {
-      // Update by existing ID
-      const updateStmt = db.prepare(`
-        UPDATE posts SET
-          title = ?, slug = ?, summary = ?, content = ?, date = ?, tags = ?, published = ?
-        WHERE id = ?
-      `);
-      updateStmt.run(title, slug, summary, content, date, tagsStr, publishedVal, existing.id);
-    } else {
-      // Insert new post
-      const insertStmt = db.prepare(`
-        INSERT INTO posts (id, title, slug, summary, content, date, tags, published)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-      `);
-      insertStmt.run(id, title, slug, summary, content, date, tagsStr, publishedVal);
+    if (error) {
+      console.error("Supabase UPSERT error:", error);
+      if (error.code === "23505") { // Unique violation in Postgres
+        return NextResponse.json({ success: false, error: "A post with this slug already exists." }, { status: 409 });
+      }
+      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({
@@ -99,15 +101,12 @@ export async function POST(request: NextRequest) {
         summary,
         content,
         date,
-        tags,
-        published,
+        tags: tags || [],
+        published: publishedVal,
       },
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error("POST post error:", error);
-    if (error?.code === "SQLITE_CONSTRAINT") {
-      return NextResponse.json({ success: false, error: "A post with this slug already exists." }, { status: 409 });
-    }
     return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
   }
 }
