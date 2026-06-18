@@ -96,13 +96,17 @@ function LoginForm() {
 
       {/* Terminal Body */}
       <div className="p-6">
-        {/* Logs */}
         <div className="mb-6 space-y-1 text-[11px] text-gray-500 border-b border-cyber-border/40 pb-4 h-24 overflow-y-auto">
-          {logs.map((log, idx) => (
-            <p key={idx} className={log.includes("failed") ? "text-red-400" : log.includes("success") ? "text-terminal-green" : ""}>
-              &gt; {log}
-            </p>
-          ))}
+          {logs.map((log, idx) => {
+            if (!log) return null;
+            const isFailed = log.includes("failed");
+            const isSuccess = log.includes("success");
+            return (
+              <p key={idx} className={isFailed ? "text-red-400" : isSuccess ? "text-terminal-green" : ""}>
+                &gt; {log}
+              </p>
+            );
+          })}
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
