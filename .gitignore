@@ -42,6 +42,12 @@ next-env.d.ts
 
 # local database
 /content/*.db
+/content/*.db-shm
+/content/*.db-wal
+/content/*.db-journal
+*.db-shm
+*.db-wal
+*.db-journal
 
 # local uploads
 /public/uploads/
