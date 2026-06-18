@@ -6,57 +6,91 @@ import Link from "next/link";
 export default function AboutPage() {
   const researchAreas = [
     {
+      icon: Network,
+      title: "Network Routing & Cloud Infrastructure",
+      description: "Implementing and auditing secure hybrid network topologies, VNet peering, ExpressRoute gateways, load balancing policies, and subnet segmentations (aligning with CCNA & AZ-700 principles).",
+    },
+    {
       icon: Shield,
-      title: "Offensive Security Automation",
-      description: "Designing automated fuzzer agents, runtime instrumentation, and semantic analysis to systematically expose logical security flaws in API gateways and microservices.",
+      title: "Security Operations & Threat Analysis",
+      description: "Configuring telemetry logging, auditing security logs with Azure Monitor, and setting up automated incident response filters to block network intrusion (aligning with SC-200).",
     },
     {
       icon: Lock,
-      title: "Applied Cryptography & Privacy",
-      description: "Researching secure multi-party computation (SMPC), zero-knowledge proving systems, and post-quantum cryptographic schemes for distributed ledgers.",
-    },
-    {
-      icon: Network,
-      title: "Protocol Auditing & Formal Verification",
-      description: "Analyzing network and transport-layer boundary protocols for state-machine violations and using automated tools to verify cryptographic handshake correctness.",
+      title: "Identity & Secret Management",
+      description: "Securing cloud-native services by eliminating plain-text credentials, enforcing zero-trust architectures, and implementing Azure Key Vault with Managed Identities.",
     },
     {
       icon: Cpu,
-      title: "Hardware Security & Firmware Analysis",
-      description: "Reverse engineering IoT and embedded device binaries, debugging hardware interfaces (JTAG, UART), and simulating side-channel power analysis attacks.",
+      title: "Container & Application Hardening",
+      description: "Hardening container network namespaces via Docker configurations, isolating microservices messaging layers, and auditing database connection interfaces.",
+    },
+  ];
+
+  const workExperience = [
+    {
+      role: "Cloud Network & Infrastructure Engineer",
+      company: "Enterprise Security Solutions (IBM Contract)",
+      period: "Sep 2025 - Present",
+      bullets: [
+        "Secured asynchronous messaging layers using Azure Service Bus for microservices processing 1M+ daily transactions, maintaining 99.95% delivery reliability.",
+        "Optimized backend data persistence configurations, reducing database response latency by 30% and CPU utilization by 15% via query auditing.",
+        "Streamlined cloud deployment cycles by 40% using secure, automated CI/CD pipelines in GitHub Actions.",
+      ],
+    },
+    {
+      role: "Infrastructure Security Engineer",
+      company: "IT Solutions Agency (Fingent)",
+      period: "Jan 2025 - Aug 2025",
+      bullets: [
+        "Eliminated 100% of hardcoded credentials in serverless microservices by migrating secrets to Azure Key Vault and configuring Managed Identities.",
+        "Designed and audited RESTful API gateways, reducing integration latencies by 25% for cross-functional teams.",
+        "Integrated telemetry tracking via Azure Monitor and Application Insights to resolve performance bottlenecks, cutting resolution times by 20%.",
+      ],
+    },
+    {
+      role: "Junior Network & Infrastructure Engineer",
+      company: "IT Solutions Agency (Fingent)",
+      period: "Nov 2023 - Jan 2025",
+      bullets: [
+        "Containerized developer staging environments using Docker, enforcing network namespace isolation and reducing developer onboarding times.",
+        "Refactored legacy web applications to modern frameworks, reducing cloud hosting costs on Azure by 50%.",
+        "Audited and optimized database stored procedures, speeding up complex reporting cycles by 3x.",
+      ],
     },
   ];
 
   const projects = [
     {
-      name: "peekaboo",
-      tag: "Security Tooling / Go & TS",
-      description: "Stealth automated web & API vulnerability scanning engine. Employs visual state mapping and automated payload generation to detect access bypasses and SQLi.",
-      link: "https://github.com/zetalabs-in",
+      name: "AutoPSM - Audit Automation System",
+      tag: "Security Auditing / .NET & SQL",
+      description: "An automated compliance auditing tool for industrial manufacturing. Handles relational schemas managing 100k+ audit records with secure indexing for real-time compliance logs.",
     },
     {
-      name: "packet-fuzz",
-      tag: "Network Auditing / Rust",
-      description: "A high-performance raw-socket packet injection and mutation testing suite designed to evaluate firewall state-tracking robustness and boundary filters.",
-      link: "https://github.com/zetalabs-in",
-    },
-    {
-      name: "ether-shield",
-      tag: "Cryptography / Go",
-      description: "A decentralized public-key infrastructure (PKI) and key management service utilizing Shamir's secret sharing and threshold cryptography.",
-      link: "https://github.com/zetalabs-in",
+      name: "SpotLine - Resource Telemetry Agent",
+      tag: "Systems / JS & DBus APIs",
+      description: "An open-source Linux system resource and telemetry monitoring utility with 600+ active users, optimizing boundary checks via low-level DBus APIs.",
     },
   ];
 
+  const certifications = [
+    { name: "Cisco Certified Network Associate (CCNA)", issuer: "Cisco", status: "Scheduling this month" },
+    { name: "Azure Network Engineer Associate (AZ-700)", issuer: "Microsoft", status: "Scheduling this month" },
+    { name: "Security Operations Analyst (SC-200)", issuer: "Microsoft", status: "Scheduling this month" },
+    { name: "Microsoft Certified: Azure Fundamentals (AZ-900)", issuer: "Microsoft", status: "Active" },
+    { name: "Microsoft Certified: Azure AI Fundamentals (AI-900)", issuer: "Microsoft", status: "Active" },
+    { name: "GitHub Copilot Certified", issuer: "GitHub", status: "Active" },
+  ];
+
   const coursework = [
-    "Advanced Cryptography & Number Theory",
-    "Network Security Protocols & WAFs",
-    "Operating Systems Design & Exploitation",
-    "Database Systems & Query Optimization",
-    "Penetration Testing & Red Teaming Labs",
-    "Distributed Systems & Consensus Protocols",
-    "Computer Networks & Packet Analysis",
-    "Compiler Design & Static Analysis",
+    "Computer Networks & Packet Routing",
+    "Cryptography & Identity Security",
+    "Cloud-Native Systems & Resource Management",
+    "Operating Systems & Process Isolation",
+    "Database Auditing & Query Optimization",
+    "CI/CD Pipeline Security & Automation",
+    "Subnet Segmentations & Firewall Architecting",
+    "Object-Oriented Software Design",
   ];
 
   return (
@@ -72,13 +106,13 @@ export default function AboutPage() {
           <div className="mb-16 border border-cyber-border rounded-xl bg-black/40 p-6 relative overflow-hidden">
             <div className="flex items-center gap-2 border-b border-cyber-border pb-4 mb-4 text-xs text-gray-500">
               <Terminal className="h-4 w-4 text-terminal-green animate-pulse" />
-              <span>SYSTEM: zetalabs_telemetry // profile_index.sh</span>
+              <span>SYSTEM: zetalabs_telemetry // operator_profile.sh</span>
             </div>
             <div className="grid gap-2 text-xs md:text-sm">
-              <p><span className="text-gray-500">STUDENT_ID :</span> <span className="text-terminal-teal">ZL-2026-MSC</span></p>
-              <p><span className="text-gray-500">RESEARCH_FOCUS :</span> <span className="text-terminal-green">Systems Security, Protocol Analysis & Cryptography</span></p>
-              <p><span className="text-gray-500">GPA :</span> <span className="text-white">8.87 / 10.0 (Top 5% of Department)</span></p>
-              <p><span className="text-gray-500">TARGET :</span> <span className="text-gray-300">Graduate Admissions - MSc Computer Science / Cybersecurity</span></p>
+              <p><span className="text-gray-500">ROLE_SPEC :</span> <span className="text-terminal-teal">Network Engineer // Cybersecurity Focus</span></p>
+              <p><span className="text-gray-500">QUALIFICATION :</span> <span className="text-white">B.Tech in Computer Science (GPA: 7.98/10)</span></p>
+              <p><span className="text-gray-500">TARGET :</span> <span className="text-gray-300">Graduate Admissions - MSc Abroad (Computer Networks & Security)</span></p>
+              <p><span className="text-gray-500">CREDENTIALS_STATUS :</span> <span className="text-terminal-green">CCNA, AZ-700 & SC-200 Scheduling Current Month</span></p>
             </div>
           </div>
 
@@ -91,7 +125,7 @@ export default function AboutPage() {
               Academic Profile & <span className="text-terminal-green underline decoration-terminal-green decoration-2 underline-offset-8">Research Statement</span>
             </h1>
             <p className="text-sm text-gray-400 max-w-3xl leading-relaxed">
-              Aspiring graduate student seeking an MSc program in Computer Science and Cybersecurity. I combine solid mathematical foundations in cryptography with practical offensive security capabilities, aiming to research automated verification and security architectures.
+              Academic candidate seeking enrollment in a graduate MSc program. Focused on **Computer Networks, Infrastructure Design, and Cloud Security**. Transitioning a strong background in software engineering, API architecture, and database auditing into research on secure routing topologies and automated threat analysis.
             </p>
           </div>
 
@@ -102,15 +136,15 @@ export default function AboutPage() {
                 <BookOpen className="h-5 w-5 text-terminal-teal" /> Biography & Research Interests
               </h3>
               <p className="text-xs text-gray-400 leading-relaxed font-sans">
-                My passion for security began with exploring protocol layers and firmware implementations. During my undergraduate studies, I focused on identifying systemic vulnerabilities in web services and networks, which led to founding <strong>ZetaLabs</strong>, a security research collective.
+                My professional experience has centered around cloud microservices scalability and database optimization. However, my primary research interest lies at the intersection of network architecture and defensive operations. 
               </p>
               <p className="text-xs text-gray-400 leading-relaxed font-sans">
-                In my research, I aim to solve the scalability bottleneck of manual vulnerability assessments. By combining static program analysis with runtime instrumentation and fuzzing, I build automated vulnerability scanners (like our active project <em>peekaboo</em>) that map application flow and expose logic-level flaws. My long-term goal is to contribute to formal verification methods for security-critical APIs.
+                By pursuing graduate studies, I aim to study secure routing protocols, zero-trust network access (ZTNA), and threat telemetry automation. Having designed systems processing millions of events, I want to explore how traffic profiling and automated firewall policy generation can mitigate DDoS vectors and protect boundary interfaces.
               </p>
 
               {/* Research Areas */}
               <div className="pt-6">
-                <h4 className="text-xs font-bold text-gray-200 uppercase tracking-wider mb-6">// CORE_RESEARCH_DETERMINATIONS</h4>
+                <h4 className="text-xs font-bold text-gray-200 uppercase tracking-wider mb-6">// CORE_INFRASTRUCTURE_FOCUS</h4>
                 <div className="grid gap-6 sm:grid-cols-2">
                   {researchAreas.map((area, idx) => {
                     const Icon = area.icon;
@@ -130,7 +164,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Education stats card */}
+            {/* Education Stats Card */}
             <div className="space-y-6">
               <div className="glow-card rounded-xl p-6 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-terminal-green/5 blur-xl rounded-full" />
@@ -141,21 +175,15 @@ export default function AboutPage() {
                   <div>
                     <h4 className="font-bold text-gray-200 uppercase">Bachelor of Technology</h4>
                     <p className="text-gray-400 font-sans mt-0.5">Computer Science & Engineering</p>
-                    <p className="text-[10px] text-gray-500 font-sans">Specialization in Cyber Security</p>
-                    <p className="text-terminal-green mt-1">GPA: 8.87 / 10.0 (First Class with Distinction)</p>
+                    <p className="text-[10px] text-gray-500 font-sans">Jyothi Engineering College</p>
+                    <p className="text-[10px] text-gray-500 font-mono">Aug 2019 – Jul 2023</p>
+                    <p className="text-terminal-green mt-1">GPA: 7.98 / 10.0</p>
                   </div>
                   <div className="border-t border-cyber-border/60 pt-3">
-                    <h4 className="font-bold text-gray-300 uppercase">// ACADEMIC_AWARDS</h4>
-                    <ul className="mt-2 space-y-1.5 text-[10px] text-gray-400 font-sans">
-                      <li className="flex items-start gap-1">
-                        <Award className="h-3.5 w-3.5 text-terminal-teal shrink-0 mt-0.5" />
-                        <span>Winner, Inter-University Capture the Flag (CTF) 2025</span>
-                      </li>
-                      <li className="flex items-start gap-1">
-                        <Award className="h-3.5 w-3.5 text-terminal-teal shrink-0 mt-0.5" />
-                        <span>Undergraduate Research Fellowship (Applied Crypto)</span>
-                      </li>
-                    </ul>
+                    <h4 className="font-bold text-gray-300 uppercase">// ACADEMIC_SUMMARY</h4>
+                    <p className="text-[10px] text-gray-400 font-sans leading-relaxed">
+                      Solid foundation in algorithms, networks, database design, and systems. Completed undergraduate thesis on resource optimization.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -174,25 +202,81 @@ export default function AboutPage() {
             </div>
           </div>
 
+          {/* Certifications Section */}
+          <div className="mb-16">
+            <h3 className="text-xl font-bold text-white uppercase tracking-tight flex items-center gap-2 border-b border-cyber-border pb-2 mb-6">
+              <Award className="h-5 w-5 text-terminal-green" /> Technical Certifications
+            </h3>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {certifications.map((cert, idx) => (
+                <div key={idx} className="border border-cyber-border bg-black/45 rounded-lg p-4 flex flex-col justify-between hover:border-terminal-green/30 transition-colors">
+                  <div>
+                    <h4 className="text-xs font-bold text-white uppercase">{cert.name}</h4>
+                    <p className="text-[10px] text-gray-500 mt-1">Issuer: {cert.issuer}</p>
+                  </div>
+                  <div className="mt-3 flex items-center justify-between">
+                    <span className={`text-[9px] font-mono border rounded px-1.5 py-0.5 ${
+                      cert.status.includes("Scheduling") 
+                        ? "border-yellow-500/30 text-yellow-500 bg-yellow-500/5" 
+                        : "border-terminal-green/30 text-terminal-green bg-terminal-green/5"
+                    }`}>
+                      {cert.status}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Professional Experience Section */}
+          <div className="mb-16">
+            <h3 className="text-xl font-bold text-white uppercase tracking-tight flex items-center gap-2 border-b border-cyber-border pb-2 mb-6">
+              <FileText className="h-5 w-5 text-terminal-teal" /> Professional Experience
+            </h3>
+            <div className="space-y-8">
+              {workExperience.map((exp, idx) => (
+                <div key={idx} className="border border-cyber-border/60 bg-black/25 rounded-xl p-6">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4 border-b border-cyber-border/40 pb-3">
+                    <div>
+                      <h4 className="text-sm font-bold text-white uppercase">{exp.role}</h4>
+                      <p className="text-[10px] text-gray-400 font-sans mt-0.5">{exp.company}</p>
+                    </div>
+                    <span className="text-[10px] text-terminal-teal font-mono bg-terminal-teal/5 border border-terminal-teal/15 px-2.5 py-0.5 rounded">
+                      {exp.period}
+                    </span>
+                  </div>
+                  <ul className="space-y-2">
+                    {exp.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx} className="flex items-start gap-2 text-xs text-gray-400 font-sans leading-relaxed">
+                        <span className="text-terminal-green font-mono select-none mt-0.5">&gt;</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Academic Projects & Open Source */}
           <div className="mb-16">
             <h3 className="text-xl font-bold text-white uppercase tracking-tight flex items-center gap-2 border-b border-cyber-border pb-2 mb-6">
-              <Code className="h-5 w-5 text-terminal-green" /> Academic & Security Tools
+              <Code className="h-5 w-5 text-terminal-green" /> Projects & Tools
             </h3>
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2">
               {projects.map((proj, idx) => (
                 <div key={idx} className="border border-cyber-border bg-black/45 rounded-lg p-6 flex flex-col justify-between hover:border-terminal-green/40 transition-colors">
                   <div>
-                    <div className="flex justify-between items-start mb-4">
+                    <div className="mb-4">
                       <span className="text-[9px] text-terminal-green border border-terminal-green/20 bg-terminal-green/5 px-2 py-0.5 rounded uppercase font-mono">
                         {proj.tag}
                       </span>
                     </div>
-                    <h4 className="text-lg font-bold text-white mb-2 uppercase">{proj.name}</h4>
+                    <h4 className="text-base font-bold text-white mb-2 uppercase">{proj.name}</h4>
                     <p className="text-[11px] text-gray-400 leading-relaxed font-sans mb-4">{proj.description}</p>
                   </div>
                   <Link
-                    href={proj.link}
+                    href="https://github.com/zetalabs-in"
                     target="_blank"
                     className="inline-flex items-center gap-1.5 text-xs text-terminal-teal hover:underline hover:text-white transition-colors mt-2"
                   >
@@ -203,17 +287,17 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* CV Download banner */}
+          {/* CV download banner (NO PII) */}
           <div className="border border-cyber-border rounded-xl bg-black p-8 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,102,0.02)_0%,transparent_100%)]" />
             <FileText className="h-10 w-10 text-terminal-green mx-auto mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">Academic Curriculum Vitae</h3>
             <p className="text-xs text-gray-400 max-w-md mx-auto mb-6 font-sans leading-relaxed">
-              Review my comprehensive CV detailing academic publications, graduate research coursework, teaching assistant roles, and technical certifications.
+              Review the detailed academic CV featuring coursework metrics, lab credentials, and engineering projects. Stripped of all personal identifiable information (PII).
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href="/resume.pdf"
+                href="/cv-academic.pdf"
                 download
                 className="inline-flex items-center justify-center gap-2 rounded bg-terminal-green hover:bg-white text-black font-bold py-3 px-6 transition-colors text-xs cursor-pointer shadow-[0_0_10px_rgba(0,255,102,0.2)]"
               >
