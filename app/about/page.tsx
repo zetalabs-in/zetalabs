@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { BookOpen, GraduationCap, Cpu, Lock, Network, Award, Shield, FileText, Download, Code, Terminal } from "lucide-react";
+import { BookOpen, GraduationCap, Cpu, Lock, Network, Award, Shield, FileText, Code, Terminal } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutPage() {
@@ -30,32 +30,33 @@ export default function AboutPage() {
   const workExperience = [
     {
       role: "Cloud Network & Infrastructure Engineer",
-      company: "Enterprise Security Solutions (IBM Contract)",
+      company: "Enterprise Cloud & Network Services",
       period: "Sep 2025 - Present",
       bullets: [
-        "Secured asynchronous messaging layers using Azure Service Bus for microservices processing 1M+ daily transactions, maintaining 99.95% delivery reliability.",
-        "Optimized backend data persistence configurations, reducing database response latency by 30% and CPU utilization by 15% via query auditing.",
-        "Streamlined cloud deployment cycles by 40% using secure, automated CI/CD pipelines in GitHub Actions.",
+        "Architected and secured hybrid network topologies, VNet peerings, and firewall segmentation boundaries for microservices handling 1M+ daily transactions.",
+        "Configured traffic routing policies and private endpoints for Azure Service Bus, guaranteeing 99.95% message transit reliability and data isolation.",
+        "Optimized network transit paths and database connection pooling, reducing query latencies by 30% and database CPU load by 15%.",
+        "Implemented secure CI/CD pipelines in GitHub Actions with automated network-policy checks, accelerating deployments by 40%.",
       ],
     },
     {
       role: "Infrastructure Security Engineer",
-      company: "IT Solutions Agency (Fingent)",
+      company: "Network Security & Integration Consulting",
       period: "Jan 2025 - Aug 2025",
       bullets: [
-        "Eliminated 100% of hardcoded credentials in serverless microservices by migrating secrets to Azure Key Vault and configuring Managed Identities.",
-        "Designed and audited RESTful API gateways, reducing integration latencies by 25% for cross-functional teams.",
-        "Integrated telemetry tracking via Azure Monitor and Application Insights to resolve performance bottlenecks, cutting resolution times by 20%.",
+        "Enforced zero-trust access control by migrating to Azure Key Vault and Managed Identities, removing all hardcoded credentials from cloud-native infrastructure.",
+        "Designed and audited secure API gateway endpoints, applying rate-limiting policies, DDoS protection, and WAF rules to reduce integration latency by 25%.",
+        "Configured comprehensive telemetry logging and alert rules using Azure Monitor and Log Analytics to trace traffic anomalies and reduce troubleshooting time by 20%.",
       ],
     },
     {
       role: "Junior Network & Infrastructure Engineer",
-      company: "IT Solutions Agency (Fingent)",
+      company: "Managed Network & Systems Services",
       period: "Nov 2023 - Jan 2025",
       bullets: [
-        "Containerized developer staging environments using Docker, enforcing network namespace isolation and reducing developer onboarding times.",
-        "Refactored legacy web applications to modern frameworks, reducing cloud hosting costs on Azure by 50%.",
-        "Audited and optimized database stored procedures, speeding up complex reporting cycles by 3x.",
+        "Deployed and segregated staging environments via Docker containers, implementing custom network bridge configurations and namespace isolation rules.",
+        "Refactored hosting structures on Azure, optimizing virtual network routing and serverless ingress boundaries to reduce cloud hosting costs by 50%.",
+        "Audited database stored procedures and internal query APIs, reducing system query execution times by 3x.",
       ],
     },
   ];
@@ -175,7 +176,6 @@ export default function AboutPage() {
                   <div>
                     <h4 className="font-bold text-gray-200 uppercase">Bachelor of Technology</h4>
                     <p className="text-gray-400 font-sans mt-0.5">Computer Science & Engineering</p>
-                    <p className="text-[10px] text-gray-500 font-sans">Jyothi Engineering College</p>
                     <p className="text-[10px] text-gray-500 font-mono">Aug 2019 – Jul 2023</p>
                     <p className="text-terminal-green mt-1">GPA: 7.98 / 10.0</p>
                   </div>
@@ -287,30 +287,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* CV download banner (NO PII) */}
-          <div className="border border-cyber-border rounded-xl bg-black p-8 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,102,0.02)_0%,transparent_100%)]" />
-            <FileText className="h-10 w-10 text-terminal-green mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">Academic Curriculum Vitae</h3>
-            <p className="text-xs text-gray-400 max-w-md mx-auto mb-6 font-sans leading-relaxed">
-              Review the detailed academic CV featuring coursework metrics, lab credentials, and engineering projects. Stripped of all personal identifiable information (PII).
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
-                href="/cv-academic.pdf"
-                download
-                className="inline-flex items-center justify-center gap-2 rounded bg-terminal-green hover:bg-white text-black font-bold py-3 px-6 transition-colors text-xs cursor-pointer shadow-[0_0_10px_rgba(0,255,102,0.2)]"
-              >
-                <Download className="h-4 w-4" /> Download CV (PDF)
-              </a>
-              <a
-                href="mailto:hello@zetalabs.dev?subject=MSc Admissions Inquiry"
-                className="inline-flex items-center justify-center gap-2 rounded border border-cyber-border hover:border-terminal-teal text-gray-400 hover:text-terminal-teal font-bold py-3 px-6 transition-colors text-xs cursor-pointer"
-              >
-                &gt; contact_admissions
-              </a>
-            </div>
-          </div>
+
         </div>
       </section>
 
