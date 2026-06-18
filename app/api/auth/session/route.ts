@@ -9,15 +9,16 @@ export async function GET() {
 
     if (token) {
       const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://wjsgcmjgujkmedymjjxi.supabase.co";
-      // Create a temporary Supabase client with the user's specific JWT token
-      const client = createClient(supabaseUrl, token, {
+      const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || "sb_publishable_a64Ek_zM03ASOHgHgzPllg_O-cmKWKM";
+      
+      const client = createClient(supabaseUrl, supabaseAnonKey, {
         auth: {
           persistSession: false,
           autoRefreshToken: false,
         },
       });
       
-      const { data: { user }, error } = await client.auth.getUser();
+      const { data: { user }, error } = await client.auth.getUser(token);
 
       if (!error && user) {
         return NextResponse.json({ authenticated: true, email: user.email });

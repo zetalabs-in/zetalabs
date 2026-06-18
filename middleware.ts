@@ -49,14 +49,15 @@ export async function middleware(request: NextRequest) {
     if (sessionCookie) {
       try {
         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://wjsgcmjgujkmedymjjxi.supabase.co";
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || "sb_publishable_a64Ek_zM03ASOHgHgzPllg_O-cmKWKM";
         const { createClient } = await import("@supabase/supabase-js");
-        const client = createClient(supabaseUrl, sessionCookie, {
+        const client = createClient(supabaseUrl, supabaseAnonKey, {
           auth: {
             persistSession: false,
             autoRefreshToken: false,
           },
         });
-        const { data: { user }, error } = await client.auth.getUser();
+        const { data: { user }, error } = await client.auth.getUser(sessionCookie);
         if (!error && user) {
           isValid = true;
         }
