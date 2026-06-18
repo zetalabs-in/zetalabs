@@ -29,7 +29,7 @@ export default function AboutPage() {
 
   const workExperience = [
     {
-      role: "Cloud Network & Infrastructure Engineer",
+      role: "Cloud Network Engineer",
       company: "Enterprise Cloud & Network Services",
       period: "Sep 2025 - Present",
       bullets: [
@@ -40,7 +40,7 @@ export default function AboutPage() {
       ],
     },
     {
-      role: "Infrastructure Security Engineer",
+      role: "Network Security Engineer",
       company: "Network Security & Integration Consulting",
       period: "Jan 2025 - Aug 2025",
       bullets: [
@@ -50,7 +50,7 @@ export default function AboutPage() {
       ],
     },
     {
-      role: "Junior Network & Infrastructure Engineer",
+      role: "Junior Network Engineer",
       company: "Managed Network & Systems Services",
       period: "Nov 2023 - Jan 2025",
       bullets: [
@@ -62,11 +62,6 @@ export default function AboutPage() {
   ];
 
   const projects = [
-    {
-      name: "AutoPSM - Audit Automation System",
-      tag: "Security Auditing / .NET & SQL",
-      description: "An automated compliance auditing tool for industrial manufacturing. Handles relational schemas managing 100k+ audit records with secure indexing for real-time compliance logs.",
-    },
     {
       name: "SpotLine - Resource Telemetry Agent",
       tag: "Systems / JS & DBus APIs",
@@ -110,9 +105,9 @@ export default function AboutPage() {
               <span>SYSTEM: zetalabs_telemetry // operator_profile.sh</span>
             </div>
             <div className="grid gap-2 text-xs md:text-sm">
-              <p><span className="text-gray-500">ROLE_SPEC :</span> <span className="text-terminal-teal">Network Engineer // Cybersecurity Focus</span></p>
+              <p><span className="text-gray-500">ROLE_SPEC :</span> <span className="text-terminal-teal">Network & Cybersecurity Engineer</span></p>
               <p><span className="text-gray-500">QUALIFICATION :</span> <span className="text-white">B.Tech in Computer Science (GPA: 7.98/10)</span></p>
-              <p><span className="text-gray-500">TARGET :</span> <span className="text-gray-300">Graduate Admissions - MSc Abroad (Computer Networks & Security)</span></p>
+              <p><span className="text-gray-500">TARGET :</span> <span className="text-gray-300">Cybersecurity Operations & Network Defense Roles</span></p>
               <p><span className="text-gray-500">CREDENTIALS_STATUS :</span> <span className="text-terminal-green">CCNA, AZ-700 & SC-200 Scheduling Current Month</span></p>
             </div>
           </div>
@@ -120,13 +115,13 @@ export default function AboutPage() {
           {/* Heading */}
           <div className="mb-16">
             <div className="inline-block rounded border border-terminal-green/30 bg-terminal-green/5 px-3 py-1.5 text-xs text-terminal-green mb-4">
-              [ ACADEMIC_PORTFOLIO ]
+              [ PROFESSIONAL_PROFILE ]
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl font-sans mb-4">
-              Academic Profile & <span className="text-terminal-green underline decoration-terminal-green decoration-2 underline-offset-8">Research Statement</span>
+              Network & <span className="text-terminal-green underline decoration-terminal-green decoration-2 underline-offset-8">Cybersecurity Engineer</span>
             </h1>
             <p className="text-sm text-gray-400 max-w-3xl leading-relaxed">
-              Academic candidate seeking enrollment in a graduate MSc program. Focused on **Computer Networks, Infrastructure Design, and Cloud Security**. Transitioning a strong background in software engineering, API architecture, and database auditing into research on secure routing topologies and automated threat analysis.
+              Results-driven Network & Security Engineer specializing in secure routing topologies, zero-trust access control, and threat telemetry automation. Transitioning a strong foundation in cloud infrastructure and systems security into dedicated cybersecurity operations and network defense.
             </p>
           </div>
 
@@ -134,13 +129,13 @@ export default function AboutPage() {
           <div className="grid gap-8 lg:grid-cols-3 mb-16">
             <div className="lg:col-span-2 space-y-6">
               <h3 className="text-xl font-bold text-white uppercase tracking-tight flex items-center gap-2 border-b border-cyber-border pb-2">
-                <BookOpen className="h-5 w-5 text-terminal-teal" /> Biography & Research Interests
+                <BookOpen className="h-5 w-5 text-terminal-teal" /> Professional Summary & Focus
               </h3>
               <p className="text-xs text-gray-400 leading-relaxed font-sans">
-                My professional experience has centered around cloud microservices scalability and database optimization. However, my primary research interest lies at the intersection of network architecture and defensive operations. 
+                My engineering experience centers on securing cloud-native infrastructure, optimizing network routing, and implementing zero-trust architectures. I specialize in designing private network topologies, configuring secure gateways, and automating security pipelines to prevent unauthorized access.
               </p>
               <p className="text-xs text-gray-400 leading-relaxed font-sans">
-                By pursuing graduate studies, I aim to study secure routing protocols, zero-trust network access (ZTNA), and threat telemetry automation. Having designed systems processing millions of events, I want to explore how traffic profiling and automated firewall policy generation can mitigate DDoS vectors and protect boundary interfaces.
+                With a strong background in high-concurrency environments, I focus on deploying robust threat telemetry systems, WAF policies, and boundary defense mechanisms to mitigate network attack vectors, prevent intrusion, and safeguard enterprise data.
               </p>
 
               {/* Research Areas */}
@@ -180,9 +175,9 @@ export default function AboutPage() {
                     <p className="text-terminal-green mt-1">GPA: 7.98 / 10.0</p>
                   </div>
                   <div className="border-t border-cyber-border/60 pt-3">
-                    <h4 className="font-bold text-gray-300 uppercase">// ACADEMIC_SUMMARY</h4>
+                    <h4 className="font-bold text-gray-300 uppercase">// CAREER_OBJECTIVE</h4>
                     <p className="text-[10px] text-gray-400 font-sans leading-relaxed">
-                      Solid foundation in algorithms, networks, database design, and systems. Completed undergraduate thesis on resource optimization.
+                      To leverage deep expertise in cloud network architectures, firewall segmentations, and zero-trust paradigms to defend enterprise environments against modern threat vectors.
                     </p>
                   </div>
                 </div>
