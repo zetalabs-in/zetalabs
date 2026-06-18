@@ -1,25 +1,21 @@
-import { getOrganizationRepos, getLatestCommit, getRepoLanguages } from "@/lib/github";
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/landing/Hero";
 import { FeatureGrid } from "@/components/landing/FeatureGrid";
 import { Stats } from "@/components/landing/Stats";
 import { Footer } from "@/components/layout/Footer";
-import { LatestProject } from "@/components/landing/LatestProject";
 
-export default async function Home() {
-  const repos = await getOrganizationRepos();
-  const latestRepo = repos[0] || null;
-  const latestCommit = latestRepo ? await getLatestCommit(latestRepo.full_name) : null;
-  const languages = latestRepo ? await getRepoLanguages(latestRepo.full_name) : {};
-
+export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-black font-sans selection:bg-brand-purple/30">
+    <main className="min-h-screen bg-[#030303] text-gray-100 font-mono selection:bg-terminal-green/30 selection:text-terminal-green">
       <Navbar />
-      <Hero latestRepo={latestRepo} latestCommit={latestCommit} languages={languages} />
-      <LatestProject />
+      <Hero />
       <Stats />
       <FeatureGrid />
       <Footer />
     </main>
   );
 }
+
+
+
+

@@ -1,81 +1,95 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, Shield, Globe, Users, Layers, Rocket } from "lucide-react";
+import { Shield, Server, Terminal, Key, Eye, HelpCircle } from "lucide-react";
 
-const features = [
-    {
-        icon: Zap,
-        title: "Rapid Prototyping",
-        description: "We turn concepts into working prototypes in days, not months.",
-        color: "bg-brand-purple",
-        shadow: "shadow-neubrutalist-purple",
-    },
-    {
-        icon: Layers,
-        title: "Scalable Architecture",
-        description: "Built on robust tech stacks designed to grow with your user base.",
-        color: "bg-brand-blue",
-        shadow: "shadow-neubrutalist-blue",
-    },
-    {
-        icon: Users,
-        title: "User-Centric Design",
-        description: "Interfaces crafted for intuitive and engaging user experiences.",
-        color: "bg-brand-green",
-        shadow: "shadow-neubrutalist-green",
-    },
-    {
-        icon: Globe,
-        title: "Global Standards",
-        description: "Compliance and best practices baked into every product we build.",
-        color: "bg-orange-500",
-        shadow: "hover:shadow-[4px_4px_0px_0px_#F97316]",
-    },
+const capabilities = [
     {
         icon: Shield,
-        title: "Enterprise Security",
-        description: "Bank-grade security protocols to protect your data and users.",
-        color: "bg-pink-500",
-        shadow: "hover:shadow-[4px_4px_0px_0px_#EC4899]",
+        title: "Penetration Testing",
+        description: "Simulate advanced persistent threats (APTs) to identify and exploit vulnerabilities before black-hat actors do.",
+        color: "text-terminal-green",
+        glowClass: "glow-card-green",
+        tag: "OFFENSIVE_SEC"
     },
     {
-        icon: Rocket,
-        title: "Growth Strategy",
-        description: "We don't just build; we help you launch and acquire your first users.",
-        color: "bg-cyan-500",
-        shadow: "hover:shadow-[4px_4px_0px_0px_#06B6D4]",
+        icon: Server,
+        title: "Network Auditing",
+        description: "Deep scans of routing, ports, VPC configurations, firewall rules, and IAM policies to eliminate unauthorized entry points.",
+        color: "text-terminal-teal",
+        glowClass: "glow-card",
+        tag: "INFRA_HARDENING"
+    },
+    {
+        icon: Terminal,
+        title: "Custom Security Tools",
+        description: "Development of custom traffic analyzers, decoy honeypots, secure microservices, and hardened binary wrappers.",
+        color: "text-terminal-teal",
+        glowClass: "glow-card",
+        tag: "TOOL_DEV"
+    },
+    {
+        icon: Key,
+        title: "Secure Code Reviews",
+        description: "Static and dynamic source code inspection (SAST/DAST) to patch memory safety, injection, and authorization logic flaws.",
+        color: "text-terminal-green",
+        glowClass: "glow-card-green",
+        tag: "APP_SEC"
+    },
+    {
+        icon: Eye,
+        title: "DevSecOps Automation",
+        description: "Integrate compliance checking, dependency scanning, and secret leak detection directly into your Git CI/CD pipelines.",
+        color: "text-terminal-teal",
+        glowClass: "glow-card",
+        tag: "PIPELINES"
+    },
+    {
+        icon: HelpCircle,
+        title: "Mitigation Consulting",
+        description: "Step-by-step advisory on emergency patching, security compliance prep (SOC2, ISO27001), and architecture hardening.",
+        color: "text-terminal-green",
+        glowClass: "glow-card-green",
+        tag: "COMPLIANCE"
     },
 ];
 
 export function FeatureGrid() {
     return (
-        <section className="bg-gray-50 px-4 py-20 md:px-6 md:py-32">
+        <section id="capabilities" className="bg-[#030303] border-t border-cyber-border px-4 py-20 md:px-6 md:py-32">
             <div className="container mx-auto">
-                <div className="mx-auto mb-16 max-w-2xl text-center">
-                    <h2 className="mb-4 text-4xl font-black text-black">
-                        Why Partner with ZetaLabs
+                <div className="mx-auto mb-16 max-w-2xl text-center font-mono">
+                    <div className="inline-block text-xs font-bold text-terminal-teal uppercase tracking-wider mb-3">
+                        // SEC_ENGINE_CAPABILITIES
+                    </div>
+                    <h2 className="mb-4 text-4xl font-bold text-white font-sans">
+                        Our Security <span className="text-terminal-teal underline decoration-terminal-teal decoration-2 underline-offset-8">Capabilities</span>
                     </h2>
-                    <p className="text-lg font-medium text-brand-dark">
-                        The modern approach to building and launching digital products.
+                    <p className="text-sm text-gray-400">
+                        Bespoke offensive auditing and custom defensive code development built to protect systems.
                     </p>
                 </div>
 
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    {features.map((feature, index) => (
+                    {capabilities.map((cap, index) => (
                         <motion.div
                             key={index}
-                            whileHover={{ y: -5 }}
-                            className={`group relative overflow-hidden rounded-2xl border-2 border-black bg-white p-8 transition-all hover:shadow-neubrutalist ${feature.shadow}`}
+                            whileHover={{ y: -4 }}
+                            className={`group relative overflow-hidden rounded-xl border border-cyber-border bg-[#0d1214]/60 p-8 transition-all font-mono ${cap.glowClass}`}
                         >
-                            <div className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl border-2 border-black ${feature.color} text-white shadow-[4px_4px_0px_0px_#000]`}>
-                                <feature.icon className="h-6 w-6" />
+                            <div className="flex items-center justify-between mb-6">
+                                <div className={`inline-flex h-12 w-12 items-center justify-center rounded-lg border border-cyber-border bg-[#050505] ${cap.color}`}>
+                                    <cap.icon className="h-6 w-6" />
+                                </div>
+                                <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest border border-cyber-border bg-black/40 px-2 py-0.5 rounded">
+                                    {cap.tag}
+                                </span>
                             </div>
-                            <h3 className="mb-3 text-xl font-bold text-black">
-                                {feature.title}
+                            <h3 className="mb-3 text-lg font-bold text-white uppercase tracking-tight">
+                                {cap.title}
                             </h3>
-                            <p className="font-medium text-brand-dark">
-                                {feature.description}
+                            <p className="text-xs text-gray-400 leading-relaxed font-sans">
+                                {cap.description}
                             </p>
                         </motion.div>
                     ))}

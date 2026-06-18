@@ -10,8 +10,8 @@ interface ProductListProps {
 export function ProductList({ repos }: ProductListProps) {
     if (!repos || repos.length === 0) {
         return (
-            <div className="text-center py-20 border-2 border-dashed border-black rounded-2xl bg-gray-50">
-                <p className="text-xl font-bold text-gray-500">No public projects found for this organization.</p>
+            <div className="text-center py-20 border border-dashed border-cyber-border rounded-xl bg-black font-mono">
+                <p className="text-sm font-bold text-gray-500">// No security repositories index parsed at this time.</p>
             </div>
         )
     }
